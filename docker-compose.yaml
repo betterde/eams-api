@@ -1,0 +1,51 @@
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
+    networks:
+      - eams
+    volumes:
+      - ./docker/nginx:/etc/nginx
+      - .:/usr/wwwroot/eams
+    environment:
+      TZ: ${TIMEZONE}
+  fpm:
+    image: fpm:7.4.33
+    restart: always
+    build:
+      args:
+        - PUID=${WEB_SERVICE_USER_ID}
+        - PGID=${WEB_SERVICE_GROUP_ID}
+        - WORKDIR=${PROJECT_PATH_IN_CONTAINER}
+      context: ./docker/fpm
+      dockerfile: Dockerfile
+    networks:
+      - eams
+    volumes:
+      - ./docker/fpm/etc:/usr/local/etc
+      - .:/usr/wwwroot/eams
+    environment:
+      TZ: ${TIMEZONE}
+  mysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 0.0.0.0:3306:3306
+    networks:
+      - eams
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    environment:
+      TZ: ${TIMEZONE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 0.0.0.0:6379:6379
+networks:
+  eams:
+    name: eams
