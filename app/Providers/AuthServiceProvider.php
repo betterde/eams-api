@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\RouteRegistrar;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +28,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Passport::routes(function (RouteRegistrar $registrar) {
+            $registrar->forAccessTokens();
+        }, ['prefix' => 'api/auth', 'middleware' => 'dynamic.guard']);
+
+        Passport::tokensExpireIn(Carbon::now()->addDays(15));
+
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
     }
 }
