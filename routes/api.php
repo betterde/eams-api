@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Teacher\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,16 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    Route::post('password', 'SigninController@signInWithPassword');
+});
+
+Route::group(['prefix' => 'teacher', 'namespace' => 'Teacher'], function () {
+    Route::post('register', 'RegisterController@register');
+});
+
+Route::group(['prefix' => 'school', 'namespace' => 'School', 'middleware' => 'auth:api'], function () {
+    Route::post('apply', 'ApplyController@apply');
 });
