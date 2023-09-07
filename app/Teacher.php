@@ -31,6 +31,13 @@ class Teacher extends Authenticatable
     public $incrementing = false;
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var string[]
@@ -53,6 +60,6 @@ class Teacher extends Authenticatable
      */
     public function schools(): BelongsToMany
     {
-        return $this->belongsToMany(School::class, 'school_teacher_pivot', 'teacher_id', 'school_id');
+        return $this->belongsToMany(School::class, 'members', 'teacher_id', 'school_id')->withPivot('role');
     }
 }

@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Api\Teacher\RegisterController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,18 +11,33 @@ use App\Http\Controllers\Api\Teacher\RegisterController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::post('password', 'SigninController@signInWithPassword');
+    Route::put('register', 'RegisterController@register')->name('auth.register');
 });
 
-Route::group(['prefix' => 'teacher', 'namespace' => 'Teacher'], function () {
-    Route::post('register', 'RegisterController@register');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('school', 'SchoolController@index');
+    Route::post('school', 'SchoolController@store');
+    Route::get('school/{school}', 'SchoolController@show');
+
+    Route::get('teacher', 'TeacherController@index');
+    Route::put('teacher/follow', 'TeacherController@follow');
+
+    Route::get('student', 'StudentController@index');
+    Route::post('student', 'StudentController@store');
+    Route::get('student/{student}', 'StudentController@show');
+
+    Route::get('invitation', 'InvitationController@index');
+    Route::post('invitation', 'InvitationController@store');
+    Route::get('invitation/{invitation}', 'InvitationController@show');
+    Route::delete('invitation/{invitation}', 'InvitationController@destroy');
 });
 
-Route::group(['prefix' => 'school', 'namespace' => 'School', 'middleware' => 'auth:api'], function () {
-    Route::post('apply', 'ApplyController@apply');
+Route::group(['prefix' => 'account', 'namespace' => 'Account', 'middleware' => 'auth:api'], function () {
+    Route::get('profile', 'ProfileController@show');
+});
+
+Route::group(['prefix' => 'message', 'namespace' => 'Message', 'middleware' => 'auth:api'], function () {
+    Route::post('send', 'SendController@send');
 });

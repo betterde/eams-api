@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $id
  * @property string $name
  * @property integer $status
+ * @property Teacher $manager
  * @property string $manager_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -43,11 +45,11 @@ class School extends Model
     /**
      * Date: 2023/9/6
      * @author George
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function manager(): BelongsToMany
+    public function manager(): BelongsTo
     {
-        return $this->belongsToMany(Teacher::class, 'members', 'school_id', 'teacher_id');
+        return $this->belongsTo(Teacher::class, 'manager_id', 'id');
     }
 
     /**
@@ -55,11 +57,11 @@ class School extends Model
      *
      * Date: 2023/9/4
      * @author George
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function teachers(): HasMany
+    public function teachers(): BelongsToMany
     {
-        return $this->hasMany(Teacher::class, 'school_id', 'id');
+        return $this->belongsToMany(Teacher::class, 'members', 'school_id', 'teacher_id')->withPivot('role');
     }
 
     /**

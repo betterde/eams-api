@@ -16,7 +16,7 @@ class CreateTeacherStudentPivot extends Migration
         Schema::create('teacher_student_pivot', function (Blueprint $table) {
             $table->uuid('teacher_id');
             $table->uuid('student_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
             $table->primary(['teacher_id', 'student_id']);
         });
     }

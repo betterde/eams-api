@@ -17,6 +17,7 @@ class CreateSchoolsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name')->unique();
             $table->unsignedTinyInteger('status');
+            $table->uuid('manager_id');
             $table->timestamps();
         });
     }

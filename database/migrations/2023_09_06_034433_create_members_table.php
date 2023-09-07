@@ -17,8 +17,6 @@ class CreateMembersTable extends Migration
             $table->uuid('school_id');
             $table->uuid('teacher_id');
             $table->string('role');
-            $table->string('secret')->nullable();
-            $table->boolean('active');
             $table->timestamps();
         });
     }
