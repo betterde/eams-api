@@ -12,8 +12,8 @@
 */
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    Route::post('signup', 'SignUpController@signup')->name('auth.register');
     Route::post('password', 'SigninController@signInWithPassword');
-    Route::put('register', 'RegisterController@register')->name('auth.register');
 });
 
 Route::group(['middleware' => 'auth:api'], function () {

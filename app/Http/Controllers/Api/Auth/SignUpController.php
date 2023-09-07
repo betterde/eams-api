@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use Exception;
 use App\Member;
 use App\Teacher;
 use Carbon\Carbon;
@@ -13,18 +14,23 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 /**
+ * Sign up logic controller
+ *
  * Date: 2023/9/7
  * @author George
  * @package App\Http\Controllers\Api\Auth
  */
-class RegisterController extends Controller
-{/**
- * Date: 2023/9/7
- * @author George
- * @return JsonResponse
- * @throws \Exception
- */
-    public function register(Request $request)
+class SignUpController extends Controller
+{
+    /**
+     * The teacher sign up and invitation sign up handler
+     *
+     * Date: 2023/9/7
+     * @author George
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function signup(Request $request)
     {
         $attributes = $this->validate($request, [
             'name' => 'required|string',
@@ -44,6 +50,8 @@ class RegisterController extends Controller
 
             $school = $request->get('school');
             $signature = $request->get('signature');
+
+            // If registering by invitation, add the teacher as a member of the school.
             if ($school && $signature) {
                 /**
                  * @var Invitation $invitation
