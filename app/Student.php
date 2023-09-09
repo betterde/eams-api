@@ -7,6 +7,16 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Date: 2023/9/9
+ * @author George
+ * @package App
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property string $school_id
+ * @property string $password
+ */
 class Student extends Authenticatable
 {
     use HasApiTokens, Notifiable;

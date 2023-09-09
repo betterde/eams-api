@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('student', 'StudentController@store');
     Route::get('student/{student}', 'StudentController@show');
 
+    Route::post('message/send', 'MessageController@send');
+    Route::get('message/history', 'MessageController@history');
+
     Route::get('invitation', 'InvitationController@index');
     Route::post('invitation', 'InvitationController@store');
     Route::get('invitation/{invitation}', 'InvitationController@show');
@@ -36,8 +39,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::group(['prefix' => 'account', 'namespace' => 'Account', 'middleware' => 'auth:api'], function () {
     Route::get('profile', 'ProfileController@show');
-});
-
-Route::group(['prefix' => 'message', 'namespace' => 'Message', 'middleware' => 'auth:api'], function () {
-    Route::post('send', 'SendController@send');
 });

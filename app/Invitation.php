@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -9,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Date: 2023/9/6
  * @author George
  * @package App
+ * @property integer $id
+ * @property string $initiator_id
+ * @property string $school_id
+ * @property string $email
+ * @property integer $expires
+ * @property integer $status
+ * @property string $signature
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Invitation extends Model
 {

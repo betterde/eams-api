@@ -31,14 +31,17 @@ class SchoolController extends Controller
     {
         $size = $request->get('size', 15);
 
-        /**
-         * @var Teacher $teacher
-         */
-        $teacher = Auth::user();
+        $user = Auth::user();
 
-        return success($teacher->schools()->with(['manager' => function($query) {
-            return $query->first();
-        }])->orderByDesc('created_at')->paginate($size));
+        $paginator = [];
+
+        if ($user instanceof Teacher) {
+            $paginator = $user->schools()->with(['manager' => function($query) {
+                return $query->first();
+            }])->orderByDesc('created_at')->paginate($size);
+        }
+
+        return success($paginator);
     }
 
     /**

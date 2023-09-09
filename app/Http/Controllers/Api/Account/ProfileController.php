@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Account;
 
+use App\Student;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -19,11 +20,19 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-        return success([
+        $guard = Str::lower(class_basename(get_class($user)));
+
+        $attributes = [
             'id' => $user->id,
             'name' => $user->name,
-            'guard' => Str::lower(class_basename(get_class($user))),
+            'guard' => $guard,
             'email' => $user->email
-        ]);
+        ];
+
+        if ($user instanceof Student) {
+            $attributes['school_id'] = $user->school_id;
+        }
+
+        return success($attributes);
     }
 }
