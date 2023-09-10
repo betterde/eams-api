@@ -56,14 +56,4 @@ class SignInController extends Controller
 
         return success($content);
     }
-
-    public function signInWithLine(Request $request)
-    {
-        
-    }
-
-    public function SignInWithSocialCallback(Request $request)
-    {
-        
-    }
 }

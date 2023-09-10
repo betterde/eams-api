@@ -36,6 +36,13 @@ class Student extends Authenticatable
     protected $guarded = [];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var string[]
+     */
+    protected $hidden = ['password'];
+
+    /**
      * Date: 2023/9/5
      * @author George
      */

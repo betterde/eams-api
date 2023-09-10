@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('teacher', 'TeacherController@index');
     Route::put('teacher/follow', 'TeacherController@follow');
+    Route::get('teacher/followers', 'TeacherController@followers');
 
     Route::get('student', 'StudentController@index');
     Route::post('student', 'StudentController@store');
