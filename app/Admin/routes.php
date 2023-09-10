@@ -13,4 +13,6 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('school', 'SchoolController');
     $router->resource('teacher', 'TeacherController');
+    $router->resource('student', 'StudentController');
+    $router->resource('invitation', 'InvitationController');
 });

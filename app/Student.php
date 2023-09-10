@@ -4,6 +4,7 @@ namespace App;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -41,6 +42,16 @@ class Student extends Authenticatable
      * @var string[]
      */
     protected $hidden = ['password'];
+
+    /**
+     * Date: 2023/9/10
+     * @author George
+     * @return BelongsTo
+     */
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class, 'school_id', 'id');
+    }
 
     /**
      * Date: 2023/9/5
