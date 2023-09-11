@@ -40,7 +40,7 @@ class School extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'status'];
+    protected $fillable = ['id', 'name', 'status', 'manager_id'];
 
     /**
      * Date: 2023/9/6
