@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::post('signup', 'SignUpController@signup')->name('auth.register');
-    Route::post('password', 'SigninController@signInWithPassword');
+    Route::post('password', 'SignInController@signInWithPassword');
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
