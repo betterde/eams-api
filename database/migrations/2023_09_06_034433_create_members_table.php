@@ -18,6 +18,7 @@ class CreateMembersTable extends Migration
             $table->uuid('teacher_id');
             $table->string('role');
             $table->timestamps();
+            $table->primary(['school_id', 'teacher_id']);
         });
     }
 

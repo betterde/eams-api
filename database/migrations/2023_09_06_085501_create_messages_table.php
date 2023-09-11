@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->uuid('to');
             $table->text('content');
             $table->timestamp('created_at')->nullable();
+            $table->index(['from', 'to']);
         });
     }
 

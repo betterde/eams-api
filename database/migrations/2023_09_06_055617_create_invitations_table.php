@@ -17,7 +17,7 @@ class CreateInvitationsTable extends Migration
             $table->increments('id');
             $table->uuid('initiator_id')->index();
             $table->uuid('school_id');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->unsignedInteger('expires');
             $table->unsignedTinyInteger('status')->default(1);
             $table->string('signature');
