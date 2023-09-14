@@ -78,7 +78,7 @@ class InvitationController extends Controller
 
         ksort($parameters);
 
-        $signature = hash_hmac('sha256', URL::route('auth.teacher.register', $parameters, false), config('app.key'));
+        $signature = hash_hmac('sha256', URL::route('auth.signup', $parameters, false), config('app.key'));
 
         $url = URL::route('auth.register', $parameters + ['signature' => $signature], false);
 
