@@ -9,7 +9,6 @@ use App\Invitation;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\RegisterInvitation;
@@ -78,9 +77,13 @@ class InvitationController extends Controller
 
         ksort($parameters);
 
-        $signature = hash_hmac('sha256', URL::route('auth.signup', $parameters, false), config('app.key'));
+        $baseURL = sprintf('%s/signup', $request->root());
 
-        $url = URL::route('auth.signup', $parameters + ['signature' => $signature], false);
+        $signature = hash_hmac('sha256', sprintf('%s?%s', $baseURL, http_build_query($parameters)), config('app.key'));
+
+        $parameters['signature'] = $signature;
+
+        $url = sprintf('%s?%s', $baseURL, http_build_query($parameters));
 
         $attributes['expires'] = $expires->getTimestamp();
         $attributes['signature'] = Str::after($url, 'signature=');
