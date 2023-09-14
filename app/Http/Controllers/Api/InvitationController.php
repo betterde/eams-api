@@ -80,7 +80,7 @@ class InvitationController extends Controller
 
         $signature = hash_hmac('sha256', URL::route('auth.signup', $parameters, false), config('app.key'));
 
-        $url = URL::route('auth.register', $parameters + ['signature' => $signature], false);
+        $url = URL::route('auth.signup', $parameters + ['signature' => $signature], false);
 
         $attributes['expires'] = $expires->getTimestamp();
         $attributes['signature'] = Str::after($url, 'signature=');
