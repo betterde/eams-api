@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TeacherController extends Controller
 {
     /**
+     * Get teacher list by school ID.
+     *
      * Date: 2023/9/7
      * @author George
      * @param Request $request
@@ -57,6 +59,8 @@ class TeacherController extends Controller
     }
 
     /**
+     * Follow or unfollow the specifies the teacher.
+     *
      * Date: 2023/9/7
      * @author George
      * @param Request $request
@@ -79,6 +83,8 @@ class TeacherController extends Controller
     }
 
     /**
+     * Get the followers of the current user.
+     *
      * Date: 2023/9/10
      * @author George
      * @param Request $request

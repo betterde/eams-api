@@ -15,6 +15,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 /**
+ * School logic controller
+ *
  * Date: 2023/9/6
  * @author George
  * @package App\Http\Controllers\Api\School
@@ -22,6 +24,8 @@ use Illuminate\Support\Facades\Auth;
 class SchoolController extends Controller
 {
     /**
+     * Get the list of schools where the current user is located.
+     *
      * Date: 2023/9/6
      * @author George
      * @param Request $request

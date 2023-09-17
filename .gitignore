@@ -10,7 +10,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-docker
 .docker.env
 .phpstorm.meta.php
 _ide_helper.php

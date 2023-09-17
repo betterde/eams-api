@@ -4,6 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * The teacher member data model of the school.
+ *
+ * Date: 2023/9/17
+ * @author George
+ * @package App
+ */
 class Member extends Model
 {
     const ROLE_MANAGER = 'manager';

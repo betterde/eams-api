@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
+ * The student data model.
+ *
  * Date: 2023/9/9
  * @author George
  * @package App
@@ -44,6 +46,8 @@ class Student extends Authenticatable
     protected $hidden = ['password'];
 
     /**
+     * Get the student's school.
+     *
      * Date: 2023/9/10
      * @author George
      * @return BelongsTo
@@ -54,6 +58,8 @@ class Student extends Authenticatable
     }
 
     /**
+     * Get a list of teachers that students follow.
+     *
      * Date: 2023/9/5
      * @author George
      */

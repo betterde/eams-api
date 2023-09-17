@@ -40,6 +40,7 @@ class SignInController extends Controller
         $url = $request->root() . '/api/auth/token';
 
         try {
+            // Forward authentication request to OAuth server
             $response = $client->post($url, ['form_params' => [
                 'grant_type' => 'password',
                 'client_id' => config('auth.passport.client_id'),

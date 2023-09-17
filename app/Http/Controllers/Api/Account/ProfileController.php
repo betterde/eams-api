@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 
+/**
+ * Student and Teacher user profile logic controller
+ *
+ * Date: 2023/9/17
+ * @author George
+ * @package App\Http\Controllers\Api\Account
+ */
 class ProfileController extends Controller
 {
     /**
+     * Fetch account profile.
+     *
      * Date: 2023/9/6
      * @author George
      * @param Request $request

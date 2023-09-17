@@ -12,7 +12,7 @@ use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 
 class SetProviderByAccessToken
 {
-    private $server;
+    private ResourceServer $server;
 
     /**
      * @param ResourceServer $server

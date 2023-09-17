@@ -43,6 +43,8 @@ class School extends Model
     protected $fillable = ['id', 'name', 'status', 'manager_id'];
 
     /**
+     * Get school administrator information.
+     *
      * Date: 2023/9/6
      * @author George
      * @return BelongsTo

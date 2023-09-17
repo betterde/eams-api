@@ -9,12 +9,13 @@ use App\Student;
 use App\Teacher;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 /**
+ * Student logic controller
+ *
  * Date: 2023/9/6
  * @author George
  * @package App\Http\Controllers\Api\Student
@@ -101,28 +102,5 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         return success($student);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

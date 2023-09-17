@@ -16,12 +16,22 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 
 /**
+ * Invitation logic controller
+ *
  * Date: 2023/9/6
  * @author George
  * @package App\Http\Controllers\Api\Teacher
  */
 class InvitationController extends Controller
 {
+    /**
+     * Get invitation list by initiator ID.
+     *
+     * Date: 2023/9/17
+     * @author George
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function index(Request $request)
     {
         $size = $request->get('size', 15);

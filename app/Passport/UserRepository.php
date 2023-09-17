@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface
      *
      * @var Hasher
      */
-    protected $hasher;
+    protected Hasher $hasher;
 
     /**
      * Create a new repository instance.
@@ -47,13 +47,13 @@ class UserRepository implements UserRepositoryInterface
         }
 
         if (! $user) {
-            return;
+            return null;
         } elseif (method_exists($user, 'validateForPassportPasswordGrant')) {
             if (! $user->validateForPassportPasswordGrant($password)) {
-                return;
+                return null;
             }
         } elseif (! $this->hasher->check($password, $user->getAuthPassword())) {
-            return;
+            return null;
         }
 
         return new User($user->getAuthIdentifier());

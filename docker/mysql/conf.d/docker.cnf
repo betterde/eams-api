@@ -1,0 +1,12 @@
+[mysqld]
+skip-host-cache
+skip-name-resolve
+
+# After version 5.5.3, default-character-set was abandoned and changed to character-set-server
+character-set-server = utf8mb4
+default-storage-engine = INNODB
+collation-server = utf8mb4_unicode_ci
+default-time-zone = '+08:00'
+
+[client]
+default-character-set = utf8mb4

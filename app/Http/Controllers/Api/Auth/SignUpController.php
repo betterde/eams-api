@@ -61,6 +61,7 @@ class SignUpController extends Controller
                     ->where('signature', $signature)
                     ->firstOrFail();
 
+                // If the invitation is valid, the teacher will be added to the school and assigned a default role.
                 if ($invitation->status === Invitation::STATUS_UNREGISTERED && $invitation->signature === $request->get('signature') && $invitation->email === $request->get('email')) {
                     $teacher->schools()->attach($school, ['role' => Member::ROLE_STAFFER, 'created_at' => Carbon::now()]);
 

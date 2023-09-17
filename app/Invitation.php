@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * The invitation data model.
+ *
  * Date: 2023/9/6
  * @author George
  * @package App
@@ -40,6 +42,8 @@ class Invitation extends Model
     protected $guarded = ['id'];
 
     /**
+     * Get the information of the invitation initiator.
+     *
      * Date: 2023/9/6
      * @author George
      * @return BelongsTo

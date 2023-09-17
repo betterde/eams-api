@@ -1,20 +1,24 @@
 services:
   nginx:
     image: nginx:latest
-    restart: always
     ports:
       - 0.0.0.0:80:80
       - 0.0.0.0:443:443
+    restart: on-failure
+    labels:
+      - dev.orbstack.domains=eams.orb.local
     networks:
       - eams
     volumes:
       - ./docker/nginx:/etc/nginx
       - .:/usr/wwwroot/eams
+    depends_on:
+      - fpm
     environment:
       TZ: ${TIMEZONE}
   fpm:
     image: fpm:7.4.33
-    restart: always
+    restart: on-failure
     build:
       args:
         - PUID=${WEB_SERVICE_USER_ID}
@@ -31,7 +35,7 @@ services:
       TZ: ${TIMEZONE}
   mysql:
     image: mysql:latest
-    restart: always
+    restart: on-failure
     ports:
       - 0.0.0.0:3306:3306
     networks:
@@ -43,9 +47,16 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
   redis:
     image: redis:latest
-    restart: always
+    restart: on-failure
     ports:
       - 0.0.0.0:6379:6379
+    networks:
+      - eams
 networks:
   eams:
     name: eams
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.148.0/24"
+          gateway: 192.168.148.1

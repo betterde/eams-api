@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
+ * Message logic controller
+ *
  * Date: 2023/9/9
  * @author George
  * @package App\Http\Controllers\Api
@@ -18,6 +20,8 @@ use Illuminate\Database\Eloquent\Builder;
 class MessageController extends Controller
 {
     /**
+     * Fetch the message history by receiver ID.
+     *
      * Date: 2023/9/9
      * @author George
      * @param Request $request
@@ -46,6 +50,8 @@ class MessageController extends Controller
     }
 
     /**
+     * Send message to specified user.
+     *
      * Date: 2023/9/6
      * @author George
      * @param Request $request
@@ -64,6 +70,7 @@ class MessageController extends Controller
         $message->content = $request->get('content');
         $message->save();
 
+        // Push notification to websocket channel.
         event(new MessageNotification(Auth::user(), $message));
 
         return success($message);

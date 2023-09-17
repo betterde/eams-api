@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
+ * The teacher data model.
+ *
  * Date: 2023/9/5
  * @author George
  * @package App
@@ -45,6 +47,8 @@ class Teacher extends Authenticatable
     protected $hidden = ['password'];
 
     /**
+     * Get
+     *
      * Date: 2023/9/5
      * @author George
      */
